@@ -1,19 +1,14 @@
 import "./App.css";
 
-import {Page} from "./Page";
-import { PagesService } from "./PagesService";
+import { ListPages} from './ListPages';
 import { TipoCambio} from './TipoCambio';
 
 function App() {
-  
 
-  const pages = PagesService;
   return (
     <div className="App">
       <section className="Pages">
-        {pages.map((page, index) => (
-          <Page key={index} {...page} />
-        ))}
+        <ListPages />
       </section>
       <section className="Frame">
         <TipoCambio />
