@@ -16,6 +16,7 @@ function ListPages() {
   // onDragStart fires when an element
   // starts being dragged
   const onDragStart = (event) => {
+    console.log(event);
     const initialPosition = Number(event.currentTarget.dataset.position);
 
     setDragAndDrop({
@@ -24,7 +25,7 @@ function ListPages() {
       isDragging: true,
       originalOrder: list,
     });
-		console.log(dragAndDrop);
+    console.log(dragAndDrop);
     // Note: this is only for Firefox.
     // Without it, the DnD won't work.
     // But we are not using it.
@@ -96,27 +97,31 @@ function ListPages() {
     console.log("List updated!");
   }, [list]);
 
-  const pages = PagesService;
-  return pages.map((page, index) => {
+  return list.map((page, index) => {
     return (
-      <li
-        draggable
-        key={index}
-        data-position={index}
-        onDragStart={onDragStart}
-        onDragOver={onDragOver}
-        onDrop={onDrop}
-        onDragLeave={onDragLeave}
-        className={
-          dragAndDrop && dragAndDrop.draggedTo === Number(index)
-            ? "dropArea Page"
-            : "Page"
-        }
-      >
-        <a href={page.url} target="_blank">
-          {page.name}
-        </a>
-      </li>
+      <ul className="Pages">
+        <li
+          draggable="true"
+          key={index}
+          data-position={index}
+          onDragStart={onDragStart}
+          onDragOver={onDragOver}
+          onDrop={onDrop}
+          onDragLeave={onDragLeave}
+          className={
+            dragAndDrop && dragAndDrop.draggedTo === Number(index)
+              ? "dropArea Page"
+              : "Page"
+          }
+        >
+          
+            <a href={page.url} target="_blank">
+              {page.name}
+            </a>
+            <strong>☰</strong>
+          
+        </li>
+      </ul>
     );
   });
 }
