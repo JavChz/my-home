@@ -1,0 +1,26 @@
+.Page {
+  list-style: none;
+  margin-top: 1rem;
+}
+.Page a {
+	font-weight: bold;
+  background: var(--main-color-light);
+  border-radius: 0.2rem;
+  border: 2px solid var(--main-color);
+  display: inline-block;
+  font-size: 2rem;
+  min-width: 10ch;
+  padding: 1rem;
+  text-decoration: none;
+  transition: all var(--transition-main);
+}
+.Page :is(a:link, a:visited) {
+  color: var(--main-color);
+}
+.Page a:hover {
+  color: var(--main-color-light);
+  background: var(--main-color);
+}
+.Page:first-child {
+  margin-top: 0;
+}
