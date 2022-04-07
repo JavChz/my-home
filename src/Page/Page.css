@@ -9,7 +9,7 @@
   border: 2px solid var(--main-color);
   display: inline-block;
   font-size: 2rem;
-  min-width: 10ch;
+  min-width: 15ch;
   padding: 1rem;
   text-decoration: none;
   transition: all var(--transition-main);
