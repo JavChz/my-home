@@ -1,8 +1,12 @@
 import "./App.css";
-import Page from "./Page";
+
+import {Page} from "./Page";
 import { PagesService } from "./PagesService";
+import { TipoCambio} from './TipoCambio';
 
 function App() {
+  
+
   const pages = PagesService;
   return (
     <div className="App">
@@ -12,12 +16,8 @@ function App() {
         ))}
       </section>
       <section className="Frame">
-        <iframe
-          src="https://mainichi.me/"
-          width={400}
-          height={700}
-          crossorigin
-        ></iframe>
+        <TipoCambio />
+
       </section>
     </div>
   );

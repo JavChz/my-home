@@ -9,4 +9,4 @@ function Page({ name, url }) {
     </li>
   );
 }
-export default Page;
+export { Page };
