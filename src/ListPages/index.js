@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Page } from "../Page";
 import { PagesService } from "../PagesService";
+import "./ListPages.css";
 function ListPages() {
   const initialDnDState = {
     draggedFrom: null,
@@ -10,9 +10,9 @@ function ListPages() {
     updatedOrder: [],
   };
 
-  const [list, setList] = useState(PagesService);
+  const [list, setList] = useState(PagesService.get());
   const [dragAndDrop, setDragAndDrop] = useState(initialDnDState);
-
+  const [addition, setAddition] = useState({});
   // onDragStart fires when an element
   // starts being dragged
   const onDragStart = (event) => {
@@ -78,46 +78,66 @@ function ListPages() {
       draggedTo: null,
       isDragging: false,
     });
-    console.log(list)
-    localStorage.setItem("PagesService_V1",  JSON.stringify(dragAndDrop.updatedOrder));
-    console.log(localStorage.getItem("PagesService_V1"));
-  };
 
+    SaveChanges(dragAndDrop.updatedOrder);
+  };
+  function SaveChanges(list){
+    PagesService.set(list);
+    setList(list);
+  }
   const onDragLeave = () => {
     setDragAndDrop({
       ...dragAndDrop,
       draggedTo: null,
     });
   };
-
-
-
-  return list.map((page, index) => {
-    return (
-      <ul className="Pages">
-        <li
-          draggable="true"
-          key={index}
-          data-position={index}
-          onDragStart={onDragStart}
-          onDragOver={onDragOver}
-          onDrop={onDrop}
-          onDragLeave={onDragLeave}
-          className={
-            dragAndDrop && dragAndDrop.draggedTo === Number(index)
-              ? "dropArea Page"
-              : "Page"
-          }
-        >
+  useEffect(() => { 
+    console.log(addition)
+  }, [addition, list]);
+  const changeHandler = (event) =>{
+    const { name, value } = event.target;
+    setAddition({ ...addition, [name]: value })
+  }
+  const onSubmit = (event)=> { 
+    event.preventDefault();
+    setList([...list, addition]);
+  }
+  const clearAll = () => {
+    SaveChanges([]);
+  }
+  return (
+    <ul className="Pages">
+      {list.map((page, index) => {
+        return (
+          <li
+            draggable="true"
+            key={index}
+            data-position={index}
+            onDragStart={onDragStart}
+            onDragOver={onDragOver}
+            onDrop={onDrop}
+            onDragLeave={onDragLeave}
+            className={
+              dragAndDrop && dragAndDrop.draggedTo === Number(index)
+                ? "dropArea Page"
+                : "Page"
+            }
+          >
             <a href={page.url} target="_blank">
               {page.name}
             </a>
             <strong>☰</strong>
-          
-        </li>
-      </ul>
-    );
-  });
+          </li>
+        );
+      })}
+      <form onSubmit={onSubmit}>
+        <input type="text" onChange={changeHandler} placeholder="Page name" name="name" />
+        <input type="text" onChange={changeHandler} placeholder="Url" name="url" />
+        <input type="submit" value="Add" />
+      </form>
+      <button onClick={clearAll}>Clear All</button>
+    </ul>
+  );
 }
 
 export { ListPages };

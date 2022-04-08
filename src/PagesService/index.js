@@ -1,14 +1,22 @@
-let PagesService;
+let PagesService = {
+  get: function () {
+    let Pages = [
+      { name: "Platzi", url: "https://platzi.com" },
+      { name: "Crehana", url: "https://crehana.com" },
+      { name: "Notion", url: "https://notion.so" },
+      { name: "Clockify", url: "https://app.clockify.me/tracker" },
+      { name: "ProductHunt", url: "https://www.producthunt.com" },
+    ];
 
-PagesService = [
-  { name: "Platzi", url: "https://platzi.com", number: "1" },
-  { name: "Crehana", url: "https://crehana.com", number: "2" },
-  { name: "Notion", url: "https://notion.so", number: "3" },
-  { name: "Clockify", url: "https://app.clockify.me/tracker", number: "4" },
-  { name: "ProductHunt", url: "https://www.producthunt.com", number: "5" },
-];
+    if (localStorage.hasOwnProperty("PagesService_V1")) {
+      Pages = JSON.parse(localStorage.getItem("PagesService_V1"));
+    }
+    return Pages;
+  },
+  set: function (Pages) {
+    console.log(Pages)
+    localStorage.setItem("PagesService_V1",  JSON.stringify(Pages));
+  }
+};
 
-if (localStorage.hasOwnProperty("PagesService_V1")) {
-  PagesService = JSON.parse(localStorage.getItem("PagesService_V1"));
-}
 export { PagesService };
