@@ -114,7 +114,6 @@ function ListPages() {
               : "Page"
           }
         >
-          
             <a href={page.url} target="_blank">
               {page.name}
             </a>
