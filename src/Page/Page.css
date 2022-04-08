@@ -17,6 +17,7 @@
   border: .1rem solid var(--main-color-light);
   cursor: move;
   display: flex;
+  font-weight: bold;
   justify-content: space-around;
   justify-items: middle;
   line-height: 1;
