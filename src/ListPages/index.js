@@ -36,16 +36,10 @@ function ListPages() {
   // enters a droppable area.
   // In this case, any of the items on the list
   const onDragOver = (event) => {
-    // in order for the onDrop
-    // event to fire, we have
-    // to cancel out this one
     event.preventDefault();
-
     let newList = dragAndDrop.originalOrder;
-
     // index of the item being dragged
     const draggedFrom = dragAndDrop.draggedFrom;
-
     // index of the droppable area being hovered
     const draggedTo = Number(event.currentTarget.dataset.position);
 
@@ -53,7 +47,6 @@ function ListPages() {
     const remainingItems = newList.filter(
       (item, index) => index !== draggedFrom
     );
-
     newList = [
       ...remainingItems.slice(0, draggedTo),
       itemDragged,
@@ -68,47 +61,44 @@ function ListPages() {
       });
     }
   };
-
+  const SaveChanges = (list) => {
+    PagesService.set(list);
+    setList(list);
+  };
   const onDrop = (event) => {
     setList(dragAndDrop.updatedOrder);
-
     setDragAndDrop({
       ...dragAndDrop,
       draggedFrom: null,
       draggedTo: null,
       isDragging: false,
     });
-
     SaveChanges(dragAndDrop.updatedOrder);
   };
-  function SaveChanges(list){
-    PagesService.set(list);
-    setList(list);
-  }
   const onDragLeave = () => {
     setDragAndDrop({
       ...dragAndDrop,
       draggedTo: null,
     });
   };
-  useEffect(() => { 
-    console.log(addition)
+  useEffect(() => {
+    console.log(addition);
   }, [addition, list]);
-  const changeHandler = (event) =>{
+  const changeHandler = (event) => {
     const { name, value } = event.target;
-    setAddition({ ...addition, [name]: value })
-  }
-  const onSubmit = (event)=> { 
+    setAddition({ ...addition, [name]: value });
+  };
+  const onSubmit = (event) => {
     event.preventDefault();
     setList([...list, addition]);
-  }
+  };
   const clearAll = () => {
     SaveChanges([]);
-  }
+  };
   const deletePage = (index) => {
     const newList = list.filter((item, i) => i !== index);
     SaveChanges(newList);
-  }
+  };
   return (
     <ul className="Pages">
       {list.map((page, index) => {
@@ -130,15 +120,25 @@ function ListPages() {
             <a href={page.url} target="_blank">
               {page.name}
             </a>
-            
-            <button onClick={()=>deletePage(index)}>✖</button>
+
+            <button onClick={() => deletePage(index)}>✖</button>
             <button className="Pages__move">☰</button>
           </li>
         );
       })}
       <form onSubmit={onSubmit}>
-        <input type="text" onChange={changeHandler} placeholder="Page name" name="name" />
-        <input type="text" onChange={changeHandler} placeholder="Url" name="url" />
+        <input
+          type="text"
+          onChange={changeHandler}
+          placeholder="Page name"
+          name="name"
+        />
+        <input
+          type="text"
+          onChange={changeHandler}
+          placeholder="url"
+          name="url"
+        />
         <input type="submit" value="Add" />
       </form>
       <button onClick={clearAll}>Clear All</button>
