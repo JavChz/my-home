@@ -105,6 +105,10 @@ function ListPages() {
   const clearAll = () => {
     SaveChanges([]);
   }
+  const deletePage = (index) => {
+    const newList = list.filter((item, i) => i !== index);
+    SaveChanges(newList);
+  }
   return (
     <ul className="Pages">
       {list.map((page, index) => {
@@ -126,7 +130,9 @@ function ListPages() {
             <a href={page.url} target="_blank">
               {page.name}
             </a>
-            <strong>☰</strong>
+            
+            <button onClick={()=>deletePage(index)}>✖</button>
+            <button className="Pages__move">☰</button>
           </li>
         );
       })}
