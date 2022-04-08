@@ -78,6 +78,9 @@ function ListPages() {
       draggedTo: null,
       isDragging: false,
     });
+    console.log(list)
+    localStorage.setItem("PagesService_V1",  JSON.stringify(dragAndDrop.updatedOrder));
+    console.log(localStorage.getItem("PagesService_V1"));
   };
 
   const onDragLeave = () => {
@@ -87,15 +90,7 @@ function ListPages() {
     });
   };
 
-  // Not needed, just for logging purposes:
-  useEffect(() => {
-    console.log("Dragged From: ", dragAndDrop && dragAndDrop.draggedFrom);
-    console.log("Dropping Into: ", dragAndDrop && dragAndDrop.draggedTo);
-  }, [dragAndDrop]);
 
-  useEffect(() => {
-    console.log("List updated!");
-  }, [list]);
 
   return list.map((page, index) => {
     return (
