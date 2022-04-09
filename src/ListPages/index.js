@@ -13,8 +13,6 @@ function ListPages() {
   const [list, setList] = useState(PagesService.get());
   const [dragAndDrop, setDragAndDrop] = useState(initialDnDState);
   const [addition, setAddition] = useState({});
-  // onDragStart fires when an element
-  // starts being dragged
   const onDragStart = (event) => {
     console.log(event);
     const initialPosition = Number(event.currentTarget.dataset.position);
@@ -27,14 +25,8 @@ function ListPages() {
     });
     console.log(dragAndDrop);
     // Note: this is only for Firefox.
-    // Without it, the DnD won't work.
-    // But we are not using it.
     event.dataTransfer.setData("text/html", "");
   };
-
-  // onDragOver fires when an element being dragged
-  // enters a droppable area.
-  // In this case, any of the items on the list
   const onDragOver = (event) => {
     event.preventDefault();
     let newList = dragAndDrop.originalOrder;
@@ -89,8 +81,9 @@ function ListPages() {
     setAddition({ ...addition, [name]: value });
   };
   const onSubmit = (event) => {
+    setAddition({ url: "", name: "" });
     event.preventDefault();
-    setList([...list, addition]);
+    SaveChanges([...list, addition]);
   };
   const clearAll = () => {
     SaveChanges([]);
@@ -128,20 +121,22 @@ function ListPages() {
       })}
       <form onSubmit={onSubmit}>
         <input
-          type="text"
+          name="name"
           onChange={changeHandler}
           placeholder="Page name"
-          name="name"
+          type="text"
+          value={addition.name}
         />
         <input
-          type="text"
+          name="url"
           onChange={changeHandler}
           placeholder="url"
-          name="url"
+          type="text"
+          value={addition.url}
         />
-        <input type="submit" value="Add" />
+        <input type="submit" value="Add" className="Add__button"/>
       </form>
-      <button onClick={clearAll}>Clear All</button>
+      {/* <button onClick={clearAll}>Clear All</button> */}
     </ul>
   );
 }

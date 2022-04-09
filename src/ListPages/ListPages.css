@@ -98,5 +98,16 @@ form input {
 }
 
 form input[type=submit]{
+  background: var(--main-color-light);
+  border-radius: .2rem;
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
   cursor: pointer;
+  font-weight: bold;
+  transition: all var(--transition-main);
+}
+form input[type=submit]:hover{
+  background: var(--main-color);
+  color: var(--main-color-light);
+  border-color: var(--main-color-light);
 }

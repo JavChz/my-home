@@ -10,11 +10,12 @@ body{
   color: white;
 }
 .App{
+  align-items: flex-start;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 3fr 2fr;
-  max-width: 900px;
   margin: 4rem auto;
+  max-width: 900px;
 }
 
 .Pages{
@@ -26,5 +27,4 @@ body{
 .Frame{
   display: flex;
   justify-content: center;
-  margin: 0 .5rem ;
 }
