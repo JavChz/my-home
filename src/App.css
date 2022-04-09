@@ -14,10 +14,9 @@ body{
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 3fr 2fr;
-  margin: 2rem auto 0 auto;
+  margin: 3rem auto 0 auto;
   max-width: 900px;
 }
-
 .Pages{
   display: flex;
   flex-direction: column;
