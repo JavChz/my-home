@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
-import { PagesService } from "../PagesService";
+import { useState, useContext } from "react";
+import { AddForm } from "../AddForm";
+import { AppContext } from '../AppContext';
 import "./ListPages.css";
 function ListPages() {
+  const { list, setList, SaveChanges } = useContext(AppContext);
   const initialDnDState = {
     draggedFrom: null,
     draggedTo: null,
@@ -9,14 +11,10 @@ function ListPages() {
     originalOrder: [],
     updatedOrder: [],
   };
-
-  const [list, setList] = useState(PagesService.get());
   const [dragAndDrop, setDragAndDrop] = useState(initialDnDState);
-  const [addition, setAddition] = useState({});
   const onDragStart = (event) => {
     console.log(event);
     const initialPosition = Number(event.currentTarget.dataset.position);
-
     setDragAndDrop({
       ...dragAndDrop,
       draggedFrom: initialPosition,
@@ -44,7 +42,6 @@ function ListPages() {
       itemDragged,
       ...remainingItems.slice(draggedTo),
     ];
-
     if (draggedTo !== dragAndDrop.draggedTo) {
       setDragAndDrop({
         ...dragAndDrop,
@@ -52,10 +49,6 @@ function ListPages() {
         draggedTo: draggedTo,
       });
     }
-  };
-  const SaveChanges = (list) => {
-    PagesService.set(list);
-    setList(list);
   };
   const onDrop = (event) => {
     setList(dragAndDrop.updatedOrder);
@@ -72,21 +65,6 @@ function ListPages() {
       ...dragAndDrop,
       draggedTo: null,
     });
-  };
-  useEffect(() => {
-    console.log(addition);
-  }, [addition, list]);
-  const changeHandler = (event) => {
-    const { name, value } = event.target;
-    setAddition({ ...addition, [name]: value });
-  };
-  const onSubmit = (event) => {
-    setAddition({ url: "", name: "" });
-    event.preventDefault();
-    SaveChanges([...list, addition]);
-  };
-  const clearAll = () => {
-    SaveChanges([]);
   };
   const deletePage = (index) => {
     const newList = list.filter((item, i) => i !== index);
@@ -119,24 +97,8 @@ function ListPages() {
           </li>
         );
       })}
-      <form onSubmit={onSubmit}>
-        <input
-          name="name"
-          onChange={changeHandler}
-          placeholder="Page name"
-          type="text"
-          value={addition.name}
-        />
-        <input
-          name="url"
-          onChange={changeHandler}
-          placeholder="url"
-          type="text"
-          value={addition.url}
-        />
-        <input type="submit" value="Add" className="Add__button"/>
-      </form>
-      {/* <button onClick={clearAll}>Clear All</button> */}
+
+      <AddForm />
     </ul>
   );
 }
