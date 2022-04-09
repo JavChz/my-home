@@ -14,7 +14,7 @@ body{
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 3fr 2fr;
-  margin: 1rem auto;
+  margin: 2rem auto 0 auto;
   max-width: 900px;
 }
 
