@@ -62,8 +62,6 @@
 .Pages li a {
   flex: 1;
 }
-.Pages strong {
-}
 .Pages :is(button, strong) {
   border: 0.1rem solid var(--main-color);
   border-radius: 0.2rem;
