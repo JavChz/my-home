@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { ListPages } from "./ListPages";
-import { TipoCambio } from "./WidgetExchangeRate";
+import { WidgetExchangeRate } from "./WidgetExchangeRate";
 import { AppProvider } from "./AppContext";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
           <ListPages />
         </section>
         <section className="Frame">
-          <TipoCambio />
+          <WidgetExchangeRate />
         </section>
       </div>
     </AppProvider>
