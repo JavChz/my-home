@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { ListPages } from "./ListPages";
-import { TipoCambio } from "./TipoCambio";
+import { TipoCambio } from "./WidgetExchangeRate";
 import { AppProvider } from "./AppContext";
 
 function App() {
