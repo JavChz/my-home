@@ -20,4 +20,4 @@ function WidgetExchangeRate() {
 	return <div className="WidgetExchangeRate">$1 MXN = ${ Number(dolar).toFixed(2) } USD</div>;
 }
 
-export { TipoCambio };
+export { WidgetExchangeRate };
