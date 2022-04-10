@@ -102,6 +102,7 @@
   cursor: grab;
   margin-right: 1rem;
 }
-.Pages__move:hover{
+.Pages__move:is(:hover, :active) {
+  cursor: grab;
   filter: hue-rotate(45deg) brightness(3.6);
 }
