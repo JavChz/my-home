@@ -87,7 +87,7 @@ function ListPages() {
                 : "Page"
             }
           >
-            <a href={page.url} target="_blank" rel="noreferrer">
+            <a href={page.url} >
               {page.name}
             </a>
 
