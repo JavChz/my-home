@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
-import { AddForm } from "../AddForm";
-import { AppContext } from '../AppContext';
+import { AppContext } from "../AppContext";
 import "./ListPages.css";
 function ListPages() {
   const { list, setList, SaveChanges } = useContext(AppContext);
@@ -87,14 +86,17 @@ function ListPages() {
                 ? "dropArea Page"
                 : "Page"
             }
-            //style={{backgroundImage: `url("https://source.unsplash.com/random/300×300/?${index}")`, backdropFilter: "blur(5px)"}}
           >
-            
             <a href={page.url} target="_blank" rel="noreferrer">
               {page.name}
             </a>
 
-            <button onClick={() => deletePage(index)} className="Pages__buton--delete">✖</button>
+            <button
+              onClick={() => deletePage(index)}
+              className="Pages__buton--delete"
+            >
+              ✖
+            </button>
             <button className="Pages__move">☰</button>
           </li>
         );

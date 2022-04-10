@@ -31,9 +31,6 @@ body::before {
   max-width: 900px;
   grid-gap: 2rem;
 }
-.ListPages{
-
-}
 .Frame{
   display: flex;
   justify-content: center;
