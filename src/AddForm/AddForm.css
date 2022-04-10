@@ -1,0 +1,26 @@
+.AddForm {
+  width: 100%;
+  box-sizing: border-box;
+}
+.AddForm input {
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.AddForm input[type=submit]{
+  background: var(--main-color-light);
+  border-radius: .2rem;
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all var(--transition-main);
+}
+.AddForm input[type=submit]:hover{
+  background: var(--main-color);
+  color: var(--main-color-light);
+  border-color: var(--main-color-light);
+}
