@@ -30,7 +30,7 @@ function AddForm() {
         type="text"
         value={addition.url}
       />
-      <input type="submit" value="Add" className="Add__button" />
+      <input type="submit" value="Agregar" className="Add__button" />
     </form>
   );
 }
