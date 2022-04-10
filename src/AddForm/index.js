@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../AppContext";
 
-function AddForm(props) {
+function AddForm() {
 	const defaultForm = {name: "", url: ""}
   const { SaveChanges, list } = useContext(AppContext);
   const [addition, setAddition] = useState(defaultForm);
@@ -19,7 +19,7 @@ function AddForm(props) {
       <input
         name="name"
         onChange={changeHandler}
-        placeholder="Page name"
+        placeholder="Sitio"
         type="text"
         value={addition.name}
       />

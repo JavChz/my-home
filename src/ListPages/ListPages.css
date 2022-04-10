@@ -1,8 +1,12 @@
 .Pages {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  justify-content: center;
+  list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 2rem;
-  list-style: none;
 }
 .Pages :is(a:link, a:visited, strong) {
   color: var(--main-color);
@@ -23,7 +27,6 @@
   line-height: 1;
   margin-bottom: 1rem;
   overflow: hidden;
-  padding: 2rem;
   width: 100%;
 }
 .Pages li:hover {
@@ -62,6 +65,7 @@
 }
 .Pages li a {
   flex: 1;
+  padding: 1.4rem;
 }
 .Pages :is(button, strong) {
   border: 0.1rem solid var(--main-color);
@@ -80,12 +84,15 @@
   background: var(--main-color-dark);
   color: var(--main-color-light);
   border-color: var(--main-color-light);
+  
 }
 .Pages__buton--delete:hover{
   filter: hue-rotate(185deg) brightness(3.6);
+
 }
 .Pages .Pages__move {
   cursor: grab;
+  margin-right: 1rem;
 }
 form {
   width: 100%;

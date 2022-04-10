@@ -87,7 +87,9 @@ function ListPages() {
                 ? "dropArea Page"
                 : "Page"
             }
+            //style={{backgroundImage: `url("https://source.unsplash.com/random/300×300/?${index}")`, backdropFilter: "blur(5px)"}}
           >
+            
             <a href={page.url} target="_blank" rel="noreferrer">
               {page.name}
             </a>
@@ -97,8 +99,6 @@ function ListPages() {
           </li>
         );
       })}
-
-      <AddForm />
     </ul>
   );
 }
