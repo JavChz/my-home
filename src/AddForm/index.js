@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../AppContext";
-
+import './AddForm.css';
 function AddForm() {
 	const defaultForm = {name: "", url: ""}
   const { SaveChanges, list } = useContext(AppContext);
@@ -15,7 +15,7 @@ function AddForm() {
     SaveChanges([...list, addition]);
   };
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="AddForm">
       <input
         name="name"
         onChange={changeHandler}

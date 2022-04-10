@@ -17,9 +17,9 @@
   background: var(--main-color-light);
   border-radius: 0.2rem;
   border: 0.1rem solid var(--main-color-light);
+  box-shadow: var(--box-shadow-mid);
   box-sizing: border-box;
   cursor: move;
-  box-shadow: var(--box-shadow-mid);
   display: flex;
   font-weight: bold;
   justify-content: space-around;
@@ -98,33 +98,10 @@
   filter: hue-rotate(185deg) brightness(3.6);
 
 }
-.Pages .Pages__move {
+.Pages__move {
   cursor: grab;
   margin-right: 1rem;
 }
-form {
-  width: 100%;
-  box-sizing: border-box;
-}
-form input {
-  box-sizing: border-box;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  padding: 1rem;
-  width: 100%;
-}
-
-form input[type=submit]{
-  background: var(--main-color-light);
-  border-radius: .2rem;
-  border: 2px solid var(--main-color);
-  color: var(--main-color);
-  cursor: pointer;
-  font-weight: bold;
-  transition: all var(--transition-main);
-}
-form input[type=submit]:hover{
-  background: var(--main-color);
-  color: var(--main-color-light);
-  border-color: var(--main-color-light);
+.Pages__move:hover{
+  filter: hue-rotate(45deg) brightness(3.6);
 }
