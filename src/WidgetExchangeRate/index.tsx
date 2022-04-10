@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./WidgetExchangeRate.css";
-function WidgetExchangeRate() {
+
+function WidgetExchangeRate(props: Object): JSX.Element {
   const [dolar, setDolar] = useState("");
   const [loading, setLoading] = useState(true);
   const ApiURL =
@@ -8,20 +9,19 @@ function WidgetExchangeRate() {
   useEffect(() => {
     fetch(ApiURL)
       .then((response) => {
-        return response.json();
+        return response.json() ;
       })
-      .then((data) => {
-        const dolarValue = Number(data.bmx.series[0].datos[0].dato).toFixed(2);
-        setDolar(`$1 MXN = ${dolarValue} USD`);
+      .then( (data) => {
+        const dolarValue = Number(data.bmx.series[0].datos[0].dato);
+        const currentExchange = `$1 MXN = ${dolarValue.toFixed(2)} USD`;
+        setDolar(currentExchange);
         setLoading(false);
       });
   }, []);
   return (
     <div className="Widget">
       <h5 className="Widget__title">Tipo de cambio</h5>
-      <div className="Widget__body">
-        {!loading ? dolar : "Cargando..."}
-      </div>
+      <div className="Widget__body">{!loading ? dolar : "Cargando..."}</div>
     </div>
   );
 }
