@@ -15,6 +15,7 @@
   border: 0.1rem solid var(--main-color-light);
   box-sizing: border-box;
   cursor: move;
+  box-shadow: var(--box-shadow-mid);
   display: flex;
   font-weight: bold;
   justify-content: space-around;

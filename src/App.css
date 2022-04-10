@@ -4,10 +4,22 @@
   --main-color-light: hsl(191, 68%, 98%);
   --main-color-dark: hsl(191, 68%, 10%);
   --transition-main: .1s ease-in-out;
+  --box-shadow-mid: 2px 2px 4px rgba(0,0,0,.4), 2px 2px 10px rgba(0,0,0,.2);
 }
 body{
   background: var(--main-color-dark);
   color: white;
+}
+body::before {
+  display: block;
+  height: 200px;
+  background-image: url("assets/bg.jpg");
+  background-position: center;
+  position: absolute;
+  top: 0;
+  content: "";
+  z-index: -1;
+  width: 100%;
 }
 .App{
   align-items: flex-start;
