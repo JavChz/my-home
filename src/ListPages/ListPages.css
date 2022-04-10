@@ -81,6 +81,9 @@
   color: var(--main-color-light);
   border-color: var(--main-color-light);
 }
+.Pages__buton--delete:hover{
+  filter: hue-rotate(185deg) brightness(3.6);
+}
 .Pages .Pages__move {
   cursor: grab;
 }

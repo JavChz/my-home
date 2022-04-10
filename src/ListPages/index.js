@@ -92,7 +92,7 @@ function ListPages() {
               {page.name}
             </a>
 
-            <button onClick={() => deletePage(index)}>✖</button>
+            <button onClick={() => deletePage(index)} className="Pages__buton--delete">✖</button>
             <button className="Pages__move">☰</button>
           </li>
         );
