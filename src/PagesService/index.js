@@ -14,7 +14,6 @@ let PagesService = {
     return Pages;
   },
   set: function (Pages) {
-    console.log(Pages)
     localStorage.setItem("PagesService_V1",  JSON.stringify(Pages));
   }
 };

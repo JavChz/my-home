@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
 import { AppContext } from "../AppContext";
+
 import "./ListPages.css";
 function ListPages() {
-  const { list, setList, SaveChanges } = useContext(AppContext);
+  const { list, setList, SaveChanges, setModalForm, setIsModal, setIsEdit } =
+    useContext(AppContext);
   const initialDnDState = {
     draggedFrom: null,
     draggedTo: null,
@@ -12,7 +14,6 @@ function ListPages() {
   };
   const [dragAndDrop, setDragAndDrop] = useState(initialDnDState);
   const onDragStart = (event) => {
-    console.log(event);
     const initialPosition = Number(event.currentTarget.dataset.position);
     setDragAndDrop({
       ...dragAndDrop,
@@ -20,18 +21,14 @@ function ListPages() {
       isDragging: true,
       originalOrder: list,
     });
-    console.log(dragAndDrop);
     // Note: this is only for Firefox.
     event.dataTransfer.setData("text/html", "");
   };
   const onDragOver = (event) => {
     event.preventDefault();
     let newList = dragAndDrop.originalOrder;
-    // index of the item being dragged
     const draggedFrom = dragAndDrop.draggedFrom;
-    // index of the droppable area being hovered
     const draggedTo = Number(event.currentTarget.dataset.position);
-
     const itemDragged = newList[draggedFrom];
     const remainingItems = newList.filter(
       (item, index) => index !== draggedFrom
@@ -69,6 +66,12 @@ function ListPages() {
     const newList = list.filter((item, i) => i !== index);
     SaveChanges(newList);
   };
+  const editPage = (index) => {
+    setModalForm(list[index]);
+    setIsEdit(true);
+    setIsModal(true);
+  };
+
   return (
     <ul className="Pages">
       {list.map((page, index) => {
@@ -87,15 +90,19 @@ function ListPages() {
                 : "Page"
             }
           >
-            <a href={page.url} >
-              {page.name}
-            </a>
+            <a href={page.url}>{page.name}</a>
 
             <button
               onClick={() => deletePage(index)}
               className="Pages__buton--delete"
             >
               ✖
+            </button>
+            <button
+              onClick={() => editPage(index)}
+              className="Pages__buton--edit"
+            >
+              ✎
             </button>
             <button className="Pages__move">☰</button>
           </li>

@@ -1,22 +1,30 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../AppContext";
 import "./AddForm.css";
-function AddForm(props) {
-  let defaultForm
-  if (!props) {
-    defaultForm = { name: "", url: "" };
-  }
-  defaultForm = props;
+function AddForm() {
+  const { modalForm, isEdit, setIsEdit } = useContext(AppContext);
+
+  const [editing, setEditing] = useState(modalForm);
   const { SaveChanges, list } = useContext(AppContext);
-  const [addition, setAddition] = useState(defaultForm);
+  
+  useEffect(() => {
+    setEditing(modalForm);
+    console.log(editing)
+  },[modalForm]);
+
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    setAddition({ ...addition, [name]: value });
+    setEditing({ ...editing, [name]: value });
   };
   const onSubmit = (event) => {
-    setAddition({ url: "", name: "" });
+    if (isEdit) {
+      event.preventDefault();
+      //SaveChanges([...list, editing]);
+      
+    }
+    setEditing({ url: "", name: "" });
     event.preventDefault();
-    SaveChanges([...list, addition]);
+    SaveChanges([...list, editing]);
   };
   return (
     <form onSubmit={onSubmit} className="AddForm">
@@ -25,16 +33,16 @@ function AddForm(props) {
         onChange={changeHandler}
         placeholder="Sitio"
         type="text"
-        value={addition.name}
+        value={editing.name}
       />
       <input
         name="url"
         onChange={changeHandler}
         placeholder="url"
         type="text"
-        value={addition.url}
+        value={editing.url}
       />
-      <input type="submit" value="Agregar" className="Button"/>
+      <input type="submit" value="Agregar" className="Button" />
     </form>
   );
 }
