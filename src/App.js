@@ -1,11 +1,18 @@
 import "./App.css";
 
 import { ListPages } from "./ListPages";
-import { AddForm } from "./AddForm";
+import { Modal } from "./Modal";
+import { useState } from "react";
 import { WidgetExchangeRate } from "./WidgetExchangeRate";
 import { AppProvider } from "./AppContext";
 
 function App() {
+  const [isModal, setIsModal] = useState(false);
+  const changeIsModal = (form) => {
+    modalProps = { ...modalProps, form };
+    setIsModal(!isModal);
+  };
+  let modalProps = { isModal, changeIsModal };
   return (
     <AppProvider>
       <div className="App">
@@ -14,16 +21,13 @@ function App() {
         </section>
         <section className="Frame">
           <WidgetExchangeRate />
-          <div className="Widget">
-          <div className="Widget__title">
-            Agrega nuevo sitio
-            </div>
-            <div className="Widget__body">
-            <AddForm />
-            </div>
-          </div>
+
+          <button onClick={changeIsModal} className="Button">
+            Agregar Nuevo Sitio
+          </button>
         </section>
       </div>
+      <Modal {...modalProps} />
     </AppProvider>
   );
 }

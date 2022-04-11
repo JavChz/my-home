@@ -1,8 +1,12 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../AppContext";
-import './AddForm.css';
-function AddForm() {
-	const defaultForm = {name: "", url: ""}
+import "./AddForm.css";
+function AddForm(props) {
+  let defaultForm
+  if (!props) {
+    defaultForm = { name: "", url: "" };
+  }
+  defaultForm = props;
   const { SaveChanges, list } = useContext(AppContext);
   const [addition, setAddition] = useState(defaultForm);
   const changeHandler = (event) => {
@@ -30,7 +34,7 @@ function AddForm() {
         type="text"
         value={addition.url}
       />
-      <input type="submit" value="Agregar" className="Add__button" />
+      <input type="submit" value="Agregar" className="Button"/>
     </form>
   );
 }

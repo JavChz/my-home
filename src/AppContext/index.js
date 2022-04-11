@@ -4,7 +4,7 @@ import { PagesService } from "../PagesService";
 const AppContext = React.createContext();
 
 function AppProvider(props) {
-  const [modal, setModal] = useState(false);
+  
   const [list, setList] = useState(PagesService.get());
   const SaveChanges = (list) => {
     PagesService.set(list);
@@ -14,7 +14,7 @@ function AppProvider(props) {
 
   return (
     <AppContext.Provider
-      value={{ list, setList, SaveChanges, modal, setModal }}
+      value={{ list, setList, SaveChanges }}
     >
       {props.children}
     </AppContext.Provider>

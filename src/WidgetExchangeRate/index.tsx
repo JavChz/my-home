@@ -9,9 +9,9 @@ function WidgetExchangeRate(props: Object): JSX.Element {
   useEffect(() => {
     fetch(ApiURL)
       .then((response) => {
-        return response.json() ;
+        return response.json();
       })
-      .then( (data) => {
+      .then((data) => {
         const dolarValue = Number(data.bmx.series[0].datos[0].dato);
         const currentExchange = `$1 MXN = ${dolarValue.toFixed(2)} USD`;
         setDolar(currentExchange);
