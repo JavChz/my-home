@@ -9,4 +9,6 @@
   padding: 1rem;
   width: 100%;
 }
-
+.AddForm input:last-child {
+  margin-bottom: 0;
+}

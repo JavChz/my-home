@@ -16,9 +16,8 @@ function AddForm() {
     setEditing({ ...editing, [name]: value });
   };
   const onSubmit = (event) => {
+    event.preventDefault();
     if (isEdit) {
-      event.preventDefault();
-      //SaveChanges([...list, editing]);
       let newList = list;
       newList[editing.id] = editing;
       delete newList[editing.id].id;
@@ -26,7 +25,6 @@ function AddForm() {
       setIsModal(false);
     } else {
       setEditing({ url: "", name: "" });
-      event.preventDefault();
       SaveChanges([...list, editing]);
       setIsModal(false);
     }

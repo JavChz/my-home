@@ -98,13 +98,16 @@
   border-color: var(--main-color-light);
 }
 .Pages__buton--delete:hover {
-  filter: hue-rotate(185deg) brightness(3.6);
+  filter: hue-rotate(169deg) brightness(3) saturate(1.6);
 }
-.Pages__move {
+.Pages__buton--move {
   cursor: grab;
   margin-right: 1rem;
 }
-.Pages__move:is(:hover, :active) {
+.Pages__buton--move:is(:hover, :active) {
   cursor: grab;
   filter: hue-rotate(45deg) brightness(3.6);
+}
+.Pages__buton--edit:is(:hover, :active) {
+  filter: hue-rotate(327deg) brightness(3.6);
 }

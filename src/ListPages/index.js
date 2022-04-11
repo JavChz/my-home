@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { AppContext } from "../AppContext";
-
 import "./ListPages.css";
 function ListPages() {
   const { list, setList, SaveChanges, setModalForm, setIsModal, setIsEdit } =
@@ -67,7 +66,7 @@ function ListPages() {
     SaveChanges(newList);
   };
   const editPage = (index) => {
-    setModalForm({...list[index], id: index});
+    setModalForm({ ...list[index], id: index });
     setIsEdit(true);
     setIsModal(true);
   };
@@ -104,7 +103,7 @@ function ListPages() {
             >
               ✎
             </button>
-            <button className="Pages__move">☰</button>
+            <button className="Pages__buton--move">☰</button>
           </li>
         );
       })}
