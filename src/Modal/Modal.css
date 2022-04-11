@@ -1,30 +1,32 @@
-.Modal{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	top: 0;
+.Modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  transform: translateY(0);
+  transition: transform var(--transition-big);
 }
-.Modal__exit{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.444);
-	top: 0;
-	left: 0;
-	z-index: 0;
+.Modal__exit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.444);
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
-.isHidden{
-	display: none;
+.isHidden {
+  transform: translateY(-100vh);
 }
-.Modal__form{
-	background: var(--main-color-light);
-	border-radius: .5rem;
-	box-shadow: var(--box-shadow-mid);
-	display: block;
-	max-width: 600px;
-	padding: 2rem;
-	z-index: 1;
+.Modal__form {
+  background: var(--main-color-light);
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow-mid);
+  display: block;
+  max-width: 600px;
+  padding: 2rem;
+  z-index: 1;
 }
