@@ -2,15 +2,14 @@ import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../AppContext";
 import "./AddForm.css";
 function AddForm() {
-  const { modalForm, isEdit, setIsEdit } = useContext(AppContext);
+  const { modalForm, isEdit, setIsModal } = useContext(AppContext);
 
   const [editing, setEditing] = useState(modalForm);
   const { SaveChanges, list } = useContext(AppContext);
-  
+
   useEffect(() => {
     setEditing(modalForm);
-    console.log(editing)
-  },[modalForm]);
+  }, [modalForm]);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -20,11 +19,17 @@ function AddForm() {
     if (isEdit) {
       event.preventDefault();
       //SaveChanges([...list, editing]);
-      
+      let newList = list;
+      newList[editing.id] = editing;
+      delete newList[editing.id].id;
+      SaveChanges(newList);
+      setIsModal(false);
+    } else {
+      setEditing({ url: "", name: "" });
+      event.preventDefault();
+      SaveChanges([...list, editing]);
+      setIsModal(false);
     }
-    setEditing({ url: "", name: "" });
-    event.preventDefault();
-    SaveChanges([...list, editing]);
   };
   return (
     <form onSubmit={onSubmit} className="AddForm">
@@ -42,7 +47,11 @@ function AddForm() {
         type="text"
         value={editing.url}
       />
-      <input type="submit" value="Agregar" className="Button" />
+      <input
+        type="submit"
+        value={isEdit ? "Editar" : "Agregar"}
+        className="Button"
+      />
     </form>
   );
 }

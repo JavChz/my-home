@@ -12,7 +12,7 @@ function AppProvider(props) {
   // Modal and Form
   const [isModal, setIsModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [modalForm, setModalForm] = useState({name: "", url: ""});
+  const [modalForm, setModalForm] = useState({name: "", url: "", id: 0});
 
   return (
     <AppContext.Provider

@@ -67,7 +67,7 @@ function ListPages() {
     SaveChanges(newList);
   };
   const editPage = (index) => {
-    setModalForm(list[index]);
+    setModalForm({...list[index], id: index});
     setIsEdit(true);
     setIsModal(true);
   };

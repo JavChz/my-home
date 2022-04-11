@@ -4,7 +4,11 @@ import { Modal } from "./Modal";
 import { AppContext } from "./AppContext";
 import { WidgetExchangeRate } from "./WidgetExchangeRate";
 function AppUI() {
-  const { setIsModal } = useContext(AppContext);
+  const { setIsModal, setIsEdit } = useContext(AppContext);
+  const addNew = () => {
+    setIsEdit(false);
+    setIsModal(true);
+  };
   return (
     <>
       <div className="App">
@@ -13,7 +17,7 @@ function AppUI() {
         </section>
         <section className="Frame">
           <WidgetExchangeRate />
-          <button onClick={() => setIsModal(true)} className="Button">
+          <button onClick={addNew} className="Button">
             Agregar Nuevo Sitio
           </button>
         </section>
