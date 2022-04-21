@@ -2,10 +2,9 @@ import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../AppContext";
 import "./AddForm.css";
 function AddForm() {
-  const { modalForm, isEdit, setIsModal } = useContext(AppContext);
-
+  
+  const { saveChanges, list, modalForm, isEdit, setIsModal } = useContext(AppContext);
   const [editing, setEditing] = useState(modalForm);
-  const { saveChanges, list } = useContext(AppContext);
 
   useEffect(() => {
     setEditing(modalForm);
