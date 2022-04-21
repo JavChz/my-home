@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { AppContext } from "../AppContext";
 import "./ListPages.css";
 function ListPages() {
-  const { list, setList, SaveChanges, setModalForm, setIsModal, setIsEdit, setUndo } =
+  const { list, setList, saveChanges, setModalForm, setIsModal, setIsEdit, deleteItem } =
     useContext(AppContext);
   const initialDnDState = {
     draggedFrom: null,
@@ -53,7 +53,7 @@ function ListPages() {
       draggedTo: null,
       isDragging: false,
     });
-    SaveChanges(dragAndDrop.updatedOrder);
+    saveChanges(dragAndDrop.updatedOrder);
   };
   const onDragLeave = () => {
     setDragAndDrop({
@@ -61,11 +61,7 @@ function ListPages() {
       draggedTo: null,
     });
   };
-  const deletePage = (index) => {
-    setUndo(list[index]);
-    const newList = list.filter((item, i) => i !== index);
-    SaveChanges(newList);
-  };
+
   const editPage = (index) => {
     setModalForm({ ...list[index], id: index });
     setIsEdit(true);
@@ -93,7 +89,7 @@ function ListPages() {
             <a href={page.url}>{page.name}</a>
 
             <button
-              onClick={() => deletePage(index)}
+              onClick={() => deleteItem(index)}
               className="Pages__buton--delete"
             >
               ✖

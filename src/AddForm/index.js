@@ -5,7 +5,7 @@ function AddForm() {
   const { modalForm, isEdit, setIsModal } = useContext(AppContext);
 
   const [editing, setEditing] = useState(modalForm);
-  const { SaveChanges, list } = useContext(AppContext);
+  const { saveChanges, list } = useContext(AppContext);
 
   useEffect(() => {
     setEditing(modalForm);
@@ -21,11 +21,11 @@ function AddForm() {
       let newList = list;
       newList[editing.id] = editing;
       delete newList[editing.id].id;
-      SaveChanges(newList);
+      saveChanges(newList);
       setIsModal(false);
     } else {
       setEditing({ url: "", name: "" });
-      SaveChanges([...list, editing]);
+      saveChanges([...list, editing]);
       setIsModal(false);
     }
   };

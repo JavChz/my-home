@@ -4,31 +4,37 @@ import { PagesService } from "../PagesService";
 const AppContext = React.createContext();
 
 function AppProvider(props) {
+  // List
   const [list, setList] = useState(PagesService.get());
-  const SaveChanges = (list) => {
+  const saveChanges = (list) => {
     PagesService.set(list);
     setList(list);
+  };
+  // List Manipulation
+  const [undo, setUndo] = useState({ name: "", url: "", id: 0 });
+  const deleteItem = (index) => {
+    setUndo(list[index]);
+    const newList = list.filter((item, i) => i !== index);
+    saveChanges(newList);
   };
   // Modal and Form
   const [isModal, setIsModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [modalForm, setModalForm] = useState({name: "", url: "", id: 0});
-  const [undo, setUndo] = useState({name: "", url: "", id: 0});
+  const [modalForm, setModalForm] = useState({ name: "", url: "", id: 0 });
 
   return (
     <AppContext.Provider
       value={{
         list,
         setList,
-        SaveChanges,
+        saveChanges,
         isModal,
         setIsModal,
         modalForm,
         isEdit,
         setIsEdit,
         setModalForm,
-        undo,
-        setUndo
+        deleteItem,
       }}
     >
       {props.children}
