@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { AppContext } from "../AppContext";
 import "./ListPages.css";
 function ListPages() {
-  const { list, setList, saveChanges, setModalForm, setIsModal, setIsEdit, deleteItem } =
+  const { list, saveChanges, setModalForm, setIsModal, setIsEdit, deleteItem } =
     useContext(AppContext);
   const initialDnDState = {
     draggedFrom: null,
@@ -46,7 +46,7 @@ function ListPages() {
     }
   };
   const onDrop = (event) => {
-    setList(dragAndDrop.updatedOrder);
+    saveChanges(dragAndDrop.updatedOrder);
     setDragAndDrop({
       ...dragAndDrop,
       draggedFrom: null,
