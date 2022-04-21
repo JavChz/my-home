@@ -13,6 +13,7 @@ function AppProvider(props) {
   const [isModal, setIsModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [modalForm, setModalForm] = useState({name: "", url: "", id: 0});
+  const [undo, setUndo] = useState({name: "", url: "", id: 0});
 
   return (
     <AppContext.Provider
@@ -26,6 +27,8 @@ function AppProvider(props) {
         isEdit,
         setIsEdit,
         setModalForm,
+        undo,
+        setUndo
       }}
     >
       {props.children}

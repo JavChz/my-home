@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { AppContext } from "../AppContext";
 import "./ListPages.css";
 function ListPages() {
-  const { list, setList, SaveChanges, setModalForm, setIsModal, setIsEdit } =
+  const { list, setList, SaveChanges, setModalForm, setIsModal, setIsEdit, setUndo } =
     useContext(AppContext);
   const initialDnDState = {
     draggedFrom: null,
@@ -62,6 +62,7 @@ function ListPages() {
     });
   };
   const deletePage = (index) => {
+    setUndo(list[index]);
     const newList = list.filter((item, i) => i !== index);
     SaveChanges(newList);
   };
