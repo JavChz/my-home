@@ -1,10 +1,9 @@
 let PagesService = {
   get: function () {
     let Pages = [
-      { name: "Platzi", url: "https://platzi.com" },
-      { name: "Crehana", url: "https://crehana.com" },
-      { name: "Notion", url: "https://notion.so" },
-      { name: "Clockify", url: "https://app.clockify.me/tracker" },
+      { name: "ComfyRead", url: "https://javchz.github.io/ComfyRead/" },
+      { name: "TaskTracker", url: "https://javchz.github.io/tasktracker/" },
+      { name: "Hacker News", url: "https://news.ycombinator.com/news" },
       { name: "ProductHunt", url: "https://www.producthunt.com" },
     ];
 
